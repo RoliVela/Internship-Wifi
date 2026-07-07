@@ -124,8 +124,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
-    <!-- Include the live CounterAPI production library -->
-    <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
 </head>
 <body>
 
@@ -145,7 +143,7 @@
         </a>
 
         <div class="counter-text">
-            Total Portal Connections: <span id="visits">...</span>
+            Total Portal Connections: <span id="visits">1</span>
         </div>
     </div>
 
@@ -165,24 +163,21 @@
             });
         }
 
-        // Live CounterAPI Initialization and Execution
+        // Native, zero-dependency endpoint hit counter implementation
         document.addEventListener('DOMContentLoaded', function() {
-            try {
-                const counter = new Counter({ workspace: 'powell-watson-internship' });
-                const counterElement = document.getElementById('visits');
-                
-                // Increments the portal-visits register and updates the screen text
-                counter.up('portal-visits')
-                    .then(result => {
-                        counterElement.textContent = result.value;
-                    })
-                    .catch(error => {
-                        console.error('Counter log failure:', error);
-                        counterElement.textContent = 'Active';
-                    });
-            } catch (e) {
-                document.getElementById('visits').textContent = 'Active';
-            }
+            // Using a unique namespace key for tracking deployment metrics
+            const url = 'https://api.lystit.com/count/powell-watson-toyota-wifi';
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if(data && data.count) {
+                        document.getElementById('visits').textContent = data.count;
+                    }
+                })
+                .catch(error => {
+                    console.log('Counter update skipped; showing baseline.');
+                });
         });
     </script>
 
