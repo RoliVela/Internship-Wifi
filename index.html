@@ -16,7 +16,7 @@
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
-            font-size: 20px; /* Increased by 1px */
+            font-size: 20px;
         }
         .card {
             background: #141414;
@@ -25,7 +25,7 @@
             border: 1px solid #262626;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             text-align: center;
-            max-width: 400px; /* Increased width to prevent text crowding */
+            max-width: 400px;
             width: 100%;
         }
         .logo-container {
@@ -42,27 +42,27 @@
         h2 {
             margin-top: 0;
             color: #ffffff;
-            font-size: 26px; /* Increased by 1px */
+            font-size: 26px;
             font-weight: 700;
             letter-spacing: -0.5px;
         }
         .instructions {
             color: #a3a3a3;
-            font-size: 21px; /* Increased instruction font size */
+            font-size: 21px;
             line-height: 1.6;
             margin-bottom: 28px;
         }
         .network-highlight {
             color: #ffffff;
             font-weight: 600;
-            white-space: nowrap; /* Forces 'Toyota Guest' to stay on one line */
+            white-space: nowrap;
         }
         .btn {
-            background-color: #eb0a1e; /* Official Toyota Red */
+            background-color: #eb0a1e;
             color: white;
             border: none;
             padding: 16px 28px;
-            font-size: 20px; /* Increased by 1px */
+            font-size: 20px;
             font-weight: 600;
             border-radius: 8px;
             cursor: pointer;
@@ -82,7 +82,7 @@
             color: #a3a3a3;
             border: 1px solid #404040;
             padding: 12px 24px;
-            font-size: 16px; /* Increased by 1px */
+            font-size: 16px;
             font-weight: 500;
             border-radius: 8px;
             cursor: pointer;
@@ -104,12 +104,22 @@
 
         .success-msg {
             color: #34c759;
-            font-size: 18px; /* Increased by 1px */
+            font-size: 18px;
             margin-top: 16px;
             display: none;
             font-weight: 500;
             animation: fadeIn 0.3s ease;
         }
+        
+        /* Counter Styling */
+        .counter-text {
+            color: #525252;
+            font-size: 13px;
+            margin-top: 24px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-5px); }
             to { opacity: 1; transform: translateY(0); }
@@ -129,10 +139,14 @@
         <button class="btn" onclick="copyPassword()">Copy Wi-Fi Password</button>
         <div id="success" class="success-msg">Password copied! Paste into settings.</div>
 
-        <!-- Integrated Powell Watson Toyota Review Link -->
         <a href="https://search.google.com/local/writereview?placeid=ChIJX7xWHNYmYYYRICQxaGLEEYM" target="_blank" class="btn-secondary">
             Rate us on Google
         </a>
+
+        <!-- Counter Element Display -->
+        <div class="counter-text">
+            Total Portal Connections: <span id="visits">...</span>
+        </div>
     </div>
 
     <script>
@@ -150,7 +164,15 @@
                 alert('Oops, unable to copy automatically. Please type it manually.');
             });
         }
+
+        // Hit Counter API Request Logic
+        function cb(response) {
+            document.getElementById('visits').innerText = response.value;
+        }
     </script>
+    
+    <!-- Dynamic Script Injection (Replace 'rolivela-internship-wifi' with a unique name if desired) -->
+    <script async src="https://api.countapi.xyz/hit/rolivela-internship-wifi/visits?callback=cb"></script>
 
 </body>
 </html>
