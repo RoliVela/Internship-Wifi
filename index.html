@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Wi-Fi Connect</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f5f7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+        }
+        h2 {
+            margin-top: 0;
+            color: #1a1a1a;
+        }
+        p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+        .btn {
+            background-color: #007aff;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+        .btn:active {
+            background-color: #0056b3;
+        }
+        .success-msg {
+            color: #34c759;
+            font-size: 14px;
+            margin-top: 12px;
+            display: none;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Welcome to the Office</h2>
+        <p>Tap the button below to copy the Wi-Fi password, then select the network in your settings.</p>
+        
+        <button class="btn" onclick="copyPassword()">Copy Wi-Fi Password</button>
+        <div id="success" class="success-msg">Password copied! Paste into settings.</div>
+    </div>
+
+    <script>
+        function copyPassword() {
+            // REPLACE THIS STRING WITH YOUR ACTUAL OFFICE PASSWORD
+            const password = "Toyota2022"; 
+            
+            navigator.clipboard.writeText(password).then(() => {
+                const successDiv = document.getElementById('success');
+                successDiv.style.display = 'block';
+                
+                // Hides the success alert after 4 seconds
+                setTimeout(() => {
+                    successDiv.style.display = 'none';
+                }, 4000);
+            }).catch(err => {
+                alert('Oops, unable to copy automatically. Please type it manually.');
+            });
+        }
+    </script>
+
+</body>
+</html>
