@@ -139,47 +139,4 @@
         <div id="success" class="success-msg">Password copied! Paste into settings.</div>
 
         <a href="https://search.google.com/local/writereview?placeid=ChIJX7xWHNYmYYYRICQxaGLEEYM" target="_blank" class="btn-secondary">
-            Rate us on Google
-        </a>
-
-        <div class="counter-text">
-            Total Portal Connections: <span id="visits">1</span>
-        </div>
-    </div>
-
-    <script>
-        function copyPassword() {
-            const password = "Toyota2022"; 
-            
-            navigator.clipboard.writeText(password).then(() => {
-                const successDiv = document.getElementById('success');
-                successDiv.style.display = 'block';
-                
-                setTimeout(() => {
-                    successDiv.style.display = 'none';
-                }, 4000);
-            }).catch(err => {
-                alert('Oops, unable to copy automatically. Please type it manually.');
-            });
-        }
-
-        // Native, zero-dependency endpoint hit counter implementation
-        document.addEventListener('DOMContentLoaded', function() {
-            // Using a unique namespace key for tracking deployment metrics
-            const url = 'https://api.lystit.com/count/powell-watson-toyota-wifi';
-            
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    if(data && data.count) {
-                        document.getElementById('visits').textContent = data.count;
-                    }
-                })
-                .catch(error => {
-                    console.log('Counter update skipped; showing baseline.');
-                });
-        });
-    </script>
-
-</body>
-</html>
+            Rate
