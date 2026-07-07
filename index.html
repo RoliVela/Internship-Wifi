@@ -16,7 +16,7 @@
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
-            font-size: 20px;
+            font-size: 19px;
         }
         .card {
             background: #141414;
@@ -42,13 +42,13 @@
         h2 {
             margin-top: 0;
             color: #ffffff;
-            font-size: 26px;
+            font-size: 25px;
             font-weight: 700;
             letter-spacing: -0.5px;
         }
         .instructions {
             color: #a3a3a3;
-            font-size: 21px;
+            font-size: 20px;
             line-height: 1.6;
             margin-bottom: 28px;
         }
@@ -62,7 +62,7 @@
             color: white;
             border: none;
             padding: 16px 28px;
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 600;
             border-radius: 8px;
             cursor: pointer;
@@ -82,7 +82,7 @@
             color: #a3a3a3;
             border: 1px solid #404040;
             padding: 12px 24px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 500;
             border-radius: 8px;
             cursor: pointer;
@@ -104,14 +104,13 @@
 
         .success-msg {
             color: #34c759;
-            font-size: 18px;
+            font-size: 17px;
             margin-top: 16px;
             display: none;
             font-weight: 500;
             animation: fadeIn 0.3s ease;
         }
         
-        /* Counter Styling */
         .counter-text {
             color: #525252;
             font-size: 13px;
@@ -125,6 +124,8 @@
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
+    <!-- Include the live CounterAPI production library -->
+    <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
 </head>
 <body>
 
@@ -143,7 +144,6 @@
             Rate us on Google
         </a>
 
-        <!-- Counter Element Display -->
         <div class="counter-text">
             Total Portal Connections: <span id="visits">...</span>
         </div>
@@ -165,14 +165,26 @@
             });
         }
 
-        // Hit Counter API Request Logic
-        function cb(response) {
-            document.getElementById('visits').innerText = response.value;
-        }
+        // Live CounterAPI Initialization and Execution
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                const counter = new Counter({ workspace: 'powell-watson-internship' });
+                const counterElement = document.getElementById('visits');
+                
+                // Increments the portal-visits register and updates the screen text
+                counter.up('portal-visits')
+                    .then(result => {
+                        counterElement.textContent = result.value;
+                    })
+                    .catch(error => {
+                        console.error('Counter log failure:', error);
+                        counterElement.textContent = 'Active';
+                    });
+            } catch (e) {
+                document.getElementById('visits').textContent = 'Active';
+            }
+        });
     </script>
-    
-    <!-- Dynamic Script Injection (Replace 'rolivela-internship-wifi' with a unique name if desired) -->
-    <script async src="https://api.countapi.xyz/hit/rolivela-internship-wifi/visits?callback=cb"></script>
 
 </body>
 </html>
