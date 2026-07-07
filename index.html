@@ -166,26 +166,31 @@
 
         // Live CounterAPI Initialization and Execution
         document.addEventListener('DOMContentLoaded', function() {
-            const counterElement = document.getElementById('visits');
-            const namespace = "powell-watson-internship";
-            const key = "portal-visits";
+            try {
+                // Target the correct CounterAPI production endpoint
+                const counterElement = document.getElementById('visits');
+                const workspace = 'powell-watson-internship';
+                const key = 'portal-visits';
 
-            fetch(`https://api.countapi.io/hit/${namespace}/${key}`)
-                .then(res => {
-                    if (!res.ok) throw new Error('API down');
-                    return res.json();
-                })
-                .then(data => {
-                    if (data && typeof data.value !== 'undefined') {
-                        counterElement.textContent = data.value;
-                    } else {
+                fetch(`https://api.counterapi.dev/v1/${workspace}/${key}/up`)
+                    .then(response => {
+                        if (!response.ok) throw new Error('Network issues');
+                        return response.json();
+                    })
+                    .then(result => {
+                        if (result && result.count) {
+                            counterElement.textContent = result.count;
+                        } else {
+                            counterElement.textContent = 'Active';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Counter log failure:', error);
                         counterElement.textContent = 'Active';
-                    }
-                })
-                .catch(error => {
-                    console.error('Counter log failure:', error);
-                    counterElement.textContent = 'Active';
-                });
+                    });
+            } catch (e) {
+                document.getElementById('visits').textContent = 'Active';
+            }
         });
     </script>
 
