@@ -16,15 +16,16 @@
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
+            font-size: 18px;
         }
         .card {
             background: #141414;
-            padding: 35px 30px;
+            padding: 40px 30px;
             border-radius: 16px;
             border: 1px solid #262626;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             text-align: center;
-            max-width: 350px;
+            max-width: 360px;
             width: 100%;
         }
         .logo-container {
@@ -34,21 +35,21 @@
             align-items: center;
         }
         .logo-image {
-            width: 140px;
+            width: 150px;
             height: auto;
             object-fit: contain;
         }
         h2 {
             margin-top: 0;
             color: #ffffff;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
             letter-spacing: -0.5px;
         }
         p {
             color: #a3a3a3;
-            font-size: 14px;
-            line-height: 1.5;
+            font-size: 16px;
+            line-height: 1.6;
             margin-bottom: 28px;
         }
         .network-highlight {
@@ -59,13 +60,14 @@
             background-color: #eb0a1e; /* Official Toyota Red */
             color: white;
             border: none;
-            padding: 14px 28px;
-            font-size: 16px;
+            padding: 16px 28px;
+            font-size: 18px;
             font-weight: 600;
             border-radius: 8px;
             cursor: pointer;
             width: 100%;
             transition: background-color 0.2s ease, transform 0.1s ease;
+            box-sizing: border-box;
         }
         .btn:hover {
             background-color: #cc081a;
@@ -73,9 +75,35 @@
         .btn:active {
             transform: scale(0.98);
         }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: #a3a3a3;
+            border: 1px solid #404040;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 16px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        .btn-secondary:hover {
+            color: #ffffff;
+            border-color: #eb0a1e;
+            background-color: rgba(235, 10, 30, 0.05);
+        }
+        .btn-secondary:active {
+            transform: scale(0.98);
+        }
+
         .success-msg {
             color: #34c759;
-            font-size: 14px;
+            font-size: 16px;
             margin-top: 16px;
             display: none;
             font-weight: 500;
@@ -91,7 +119,7 @@
 
     <div class="card">
         <div class="logo-container">
-            <img src="ToyotaLogo.png" alt="Toyota Logo" class="logo-image">
+            <img src="toyota-logo.png" alt="Toyota Logo" class="logo-image">
         </div>
 
         <h2>Welcome to Toyota</h2>
@@ -99,6 +127,10 @@
         
         <button class="btn" onclick="copyPassword()">Copy Wi-Fi Password</button>
         <div id="success" class="success-msg">Password copied! Paste into settings.</div>
+
+        <a href="https://search.google.com/local/writereview?placeid=ChIJX7xWHNYmYYYRICQxaGLEEYM" target="_blank" class="btn-secondary">
+            Rate us on Google
+        </a>
     </div>
 
     <script>
