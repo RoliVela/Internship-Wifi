@@ -124,6 +124,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
+        <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
 </head>
 <body>
 
@@ -139,4 +140,54 @@
         <div id="success" class="success-msg">Password copied! Paste into settings.</div>
 
         <a href="https://search.google.com/local/writereview?placeid=ChIJX7xWHNYmYYYRICQxaGLEEYM" target="_blank" class="btn-secondary">
-            Rate
+            Rate us on Google
+        </a>
+
+        <div class="counter-text">
+            Total Portal Connections: <span id="visits">...</span>
+        </div>
+    </div>
+
+    <script>
+        function copyPassword() {
+            const password = "Toyota2022"; 
+            
+            navigator.clipboard.writeText(password).then(() => {
+                const successDiv = document.getElementById('success');
+                successDiv.style.display = 'block';
+                
+                setTimeout(() => {
+                    successDiv.style.display = 'none';
+                }, 4000);
+            }).catch(err => {
+                alert('Oops, unable to copy automatically. Please type it manually.');
+            });
+        }
+
+        // Live CounterAPI Initialization and Execution
+        document.addEventListener('DOMContentLoaded', function() {
+            const counterElement = document.getElementById('visits');
+            const namespace = "powell-watson-internship";
+            const key = "portal-visits";
+
+            fetch(`https://api.countapi.io/hit/${namespace}/${key}`)
+                .then(res => {
+                    if (!res.ok) throw new Error('API down');
+                    return res.json();
+                })
+                .then(data => {
+                    if (data && typeof data.value !== 'undefined') {
+                        counterElement.textContent = data.value;
+                    } else {
+                        counterElement.textContent = 'Active';
+                    }
+                })
+                .catch(error => {
+                    console.error('Counter log failure:', error);
+                    counterElement.textContent = 'Active';
+                });
+        });
+    </script>
+
+</body>
+</html>
