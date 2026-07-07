@@ -46,9 +46,9 @@
             font-weight: 700;
             letter-spacing: -0.5px;
         }
-        p {
+        .instructions {
             color: #a3a3a3;
-            font-size: 16px;
+            font-size: 19px; /* Increased font size for this paragraph text */
             line-height: 1.6;
             margin-bottom: 28px;
         }
@@ -123,11 +123,12 @@
         </div>
 
         <h2>Welcome to Toyota</h2>
-        <p>Tap the button below to copy the password, then connect to the <span class="network-highlight">Toyota Guest</span> network in your settings.</p>
+        <p class="instructions">Tap the button below to copy the password, then connect to the <span class="network-highlight">Toyota Guest</span> network in your settings.</p>
         
         <button class="btn" onclick="copyPassword()">Copy Wi-Fi Password</button>
         <div id="success" class="success-msg">Password copied! Paste into settings.</div>
 
+        <!-- Integrated Powell Watson Toyota Review Link -->
         <a href="https://search.google.com/local/writereview?placeid=ChIJX7xWHNYmYYYRICQxaGLEEYM" target="_blank" class="btn-secondary">
             Rate us on Google
         </a>
